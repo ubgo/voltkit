@@ -1,6 +1,8 @@
 package genfiles
 
 import (
+	"bytes"
+	"go/format"
 	"os"
 	"path/filepath"
 	"strings"
@@ -206,6 +208,11 @@ func TestGenerateSkillsWiring(t *testing.T) {
 		if !strings.Contains(s, want) {
 			t.Fatalf("wiring missing %q:\n%s", want, s)
 		}
+	}
+	// The file lands in the consumer's repo, whose own gate runs gofmt -l: an
+	// unsorted import block (the module move put ubgo before spf13) fails it.
+	if formatted, err := format.Source(raw); err != nil || !bytes.Equal(formatted, raw) {
+		t.Fatalf("skills_gen.go is not gofmt-clean (err %v):\n%s", err, s)
 	}
 	// Hash-guard applies: hand-edit → refuse.
 	if err := os.WriteFile(filepath.Join(root, "skills_gen.go"), []byte(strings.Replace(s, "demo", "hacked", 1)), 0o644); err != nil {

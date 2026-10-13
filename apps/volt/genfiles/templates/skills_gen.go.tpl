@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/ubgo/voltkit/skillcmd"
 	"github.com/spf13/cobra"
+	"github.com/ubgo/voltkit/skillcmd"
 )
 
 // newSkillsCommand serves this project's published skills — content fetched
