@@ -21,7 +21,7 @@ brew install khanakia/tap/volt        # or: curl release archive, or task instal
 | `volt cover [dir]` | coverage per module + statement-weighted total; `--badge coverage.svg` writes a self-contained README badge, `--check` fails when it is stale, `--min N` is a CI floor |
 | `volt build <dir> --version vX.Y.Z` | cross-compile matrix → archives + `checksums.txt`; ldflags stamping verified in the produced binary |
 | `volt release <dir> <version>` | tests → reserve tag → build → publish → **verify the published artifact**; `--bump patch\|minor\|major`, `--snapshot` (publish nothing), `--from-tag` (CI/recovery, idempotent) |
-| `volt gen` | write workflow stubs + install scripts, hash-guarded: hand-edited files are refused with a diff, never clobbered |
+| `volt gen` | write workflow stubs + install scripts, hash-guarded: hand-edited files are refused with a diff, never clobbered. Generated workflows run on manual dispatch only (Actions minutes are a budget); `ci_trigger: push` in the repo-root `.volt.yml` opts `ci` back in to every push and PR |
 | `volt gen install <dir>` | install scripts (`install.sh`, `install.ps1`) for the CLI in `<dir>`, for a repo whose root is not a single CLI; they find the newest release of that CLI's own tag stream (`<binary>/vX.Y.Z`) instead of the repo-global "latest" |
 | `volt gen skills` | wire [`skillcmd`](./skillcmd) into a project: guarded wiring file + a one-time starter skill; releases then attach `skills_<version>.tar.gz` automatically |
 | `volt doctor` | is this repo releasable? tools, auth, remote, version-pin drift |
@@ -46,6 +46,7 @@ Works identically on a single-CLI repo, a library repo, a monorepo of CLIs, and 
 binary: mycli                      # default: the directory name
 platforms: [darwin/arm64, linux/amd64, windows/amd64]
 extra_binaries: [../mycli-plugin]  # companion programs packed into the same archive and installed beside it
+ci_trigger: manual                 # repo root only: manual (default) or push — when the generated ci workflow runs
 ldflags:
   vars:                            # REPLACES the default stamp map
     main.version: "{{.Version}}"

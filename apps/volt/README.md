@@ -14,7 +14,7 @@ volt release --from-tag notes/v1.4.0     # (re)publish an existing tag — CI / 
                                          # NOTE: pushing a tag releases nothing (ADR-R14) —
                                          # releases are the command above, or Run workflow with a tag
 volt release ./cmd/notes --snapshot      # build everything, publish nothing
-volt gen                                 # workflow stubs + install scripts, hash-guarded
+volt gen                                 # workflow stubs (manual-run by default, see ci_trigger) + install scripts, hash-guarded
 volt gen install ./cmd/notes             # install scripts for one CLI of a multi-binary repo (its own tag stream)
 volt gen skills                          # skillcmd wiring + one-time starter skill (see voltkit/skillcmd)
 volt doctor                              # is this repo releasable? (tools, auth, remote, pins)
@@ -69,6 +69,12 @@ hooks:                               # project-owned scripts around the release
                                      #   Repo-root cwd; context via VOLT_TAG, VOLT_VERSION,
                                      #   VOLT_DIR, VOLT_BINARY, VOLT_KIND, VOLT_DIST.
                                      #   --snapshot runs neither; --from-tag runs post only
+
+ci_trigger: manual                   # when the generated ci workflow runs. manual (default):
+                                     #   workflow_dispatch / GitLab "Run pipeline" only, because
+                                     #   CI minutes are a budget. push: every push and PR/MR.
+                                     #   Re-run `volt gen` after changing it. Release is
+                                     #   manual-only either way. Repo ROOT .volt.yml only.
 
 forge: gitlab                        # ONLY for self-hosted hosts detection cannot classify;
                                      #   gitlab.com / github.com detect from the origin remote

@@ -128,3 +128,19 @@ func TestSkillsConfigDefaultsAndOptOut(t *testing.T) {
 		t.Fatal("dir override lost")
 	}
 }
+
+func TestLoadCITrigger(t *testing.T) {
+	for _, tc := range []struct {
+		yaml string
+		ok   bool
+	}{{"", true}, {"ci_trigger: manual\n", true}, {"ci_trigger: push\n", true}, {"ci_trigger: always\n", false}} {
+		dir := t.TempDir()
+		if err := os.WriteFile(filepath.Join(dir, FileName), []byte(tc.yaml), 0o644); err != nil {
+			t.Fatal(err)
+		}
+		_, err := Load(dir)
+		if (err == nil) != tc.ok {
+			t.Errorf("%q: err=%v, want ok=%v", tc.yaml, err, tc.ok)
+		}
+	}
+}

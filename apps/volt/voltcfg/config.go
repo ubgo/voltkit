@@ -80,6 +80,14 @@ type Config struct {
 	// the REPO ROOT's .volt.yml: the forge is a repo-level fact.
 	Forge string `yaml:"forge"`
 
+	// CITrigger is when the generated ci workflow runs: "manual" (default;
+	// workflow_dispatch / Run pipeline only) or "push" (every push and
+	// PR/MR). Manual is the default because CI minutes are a metered budget
+	// and an automatic trigger that goes red for billing teaches everyone
+	// to ignore the gate. Release is manual-only regardless (ADR-R14).
+	// Meaningful only in the REPO ROOT's .volt.yml.
+	CITrigger string `yaml:"ci_trigger"`
+
 	// Generated is the scaffold stamp `volt new` writes (ADR-R13): which
 	// template, ref, commit and inputs produced this project — the data a
 	// future `volt upgrade` needs. Opaque here: volt reads it back only in
@@ -191,6 +199,11 @@ func Load(dir string) (Config, error) {
 				return c, fmt.Errorf("parse %s in %s: %w", FileName, dir, err)
 			}
 		}
+	}
+	switch c.CITrigger {
+	case "", "manual", "push":
+	default:
+		return c, fmt.Errorf("%s: ci_trigger %q is not valid — use \"manual\" (default) or \"push\"", FileName, c.CITrigger)
 	}
 	c.ApplyDefaults(dir)
 	return c, nil

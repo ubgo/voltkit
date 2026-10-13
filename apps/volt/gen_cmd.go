@@ -76,6 +76,7 @@ overwrites. Files volt never touches: CHANGELOG.md, README.md, .volt.yml.
 			}
 			v := forgeVars(f, forge.Repo(repo), cfg.Binary)
 			v.ExtraBinaries = extraBinaryNames(".", cfg)
+			v.CITrigger = cfg.CITrigger
 			refused, err := writeGenerated(cmd, append(append([]genfiles.File{}, f.CIFiles()...), genfiles.InstallScripts...), v, rootIsCLI, force)
 			if err != nil {
 				return err

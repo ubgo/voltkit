@@ -417,3 +417,77 @@ func TestRenderBytesFailsLoudly(t *testing.T) {
 		t.Fatalf("%q %v", out, err)
 	}
 }
+
+// ciBody renders f and returns the generated text for trigger checks.
+func ciBody(t *testing.T, f File, vars Vars) string {
+	t.Helper()
+	root := t.TempDir()
+	if _, err := Generate(root, f, vars, false); err != nil {
+		t.Fatal(err)
+	}
+	raw, err := os.ReadFile(filepath.Join(root, f.RelPath))
+	if err != nil {
+		t.Fatal(err)
+	}
+	return string(raw)
+}
+
+// activeLines drops comment lines, so a trigger quoted in the "paste this
+// back" header comment is not mistaken for a live one.
+func activeLines(s string) string {
+	var out []string
+	for _, l := range strings.Split(s, "\n") {
+		if !strings.HasPrefix(strings.TrimSpace(l), "#") {
+			out = append(out, l)
+		}
+	}
+	return strings.Join(out, "\n")
+}
+
+// The default is manual-only: Actions/pipeline minutes are a metered budget
+// (owner's call, 2026-10-13), so NO generated workflow may carry an
+// automatic trigger unless ci_trigger: push was asked for by name.
+func TestGeneratedCIIsManualByDefault(t *testing.T) {
+	for _, mode := range []string{"", CITriggerManual} {
+		vars := v
+		vars.CITrigger = mode
+		gh := activeLines(ciBody(t, GitHubWorkflows[0], vars))
+		if !strings.Contains(gh, "workflow_dispatch:") {
+			t.Errorf("mode %q: ci.yml must be workflow_dispatch:\n%s", mode, gh)
+		}
+		for _, auto := range []string{"push", "pull_request", "schedule", "workflow_run"} {
+			if strings.Contains(gh, auto) {
+				t.Errorf("mode %q: ci.yml has automatic trigger %q:\n%s", mode, auto, gh)
+			}
+		}
+		rel := activeLines(ciBody(t, GitHubWorkflows[1], vars))
+		if strings.Contains(rel, "push") || strings.Contains(rel, "pull_request") {
+			t.Errorf("release.yml must never trigger automatically:\n%s", rel)
+		}
+		gl := activeLines(ciBody(t, GitLabCI[0], vars))
+		if strings.Contains(gl, "push") || strings.Contains(gl, "merge_request_event") {
+			t.Errorf("mode %q: .gitlab-ci.yml has an automatic rule:\n%s", mode, gl)
+		}
+	}
+}
+
+// The opt-in: ci_trigger: push restores push + PR/MR triggers.
+func TestGeneratedCIPushOptIn(t *testing.T) {
+	vars := v
+	vars.CITrigger = CITriggerPush
+	gh := activeLines(ciBody(t, GitHubWorkflows[0], vars))
+	if !strings.Contains(gh, "on: [push, pull_request]") || strings.Contains(gh, "workflow_dispatch") {
+		t.Errorf("push opt-in ci.yml wrong:\n%s", gh)
+	}
+	gl := activeLines(ciBody(t, GitLabCI[0], vars))
+	if !strings.Contains(gl, `merge_request_event`) {
+		t.Errorf("push opt-in .gitlab-ci.yml wrong:\n%s", gl)
+	}
+}
+
+// The manual files tell the reader how to get the automatic trigger back.
+func TestManualCIHeaderShowsPasteBackLines(t *testing.T) {
+	if s := ciBody(t, GitHubWorkflows[0], v); !strings.Contains(s, "#   on: [push, pull_request]") {
+		t.Errorf("manual ci.yml must carry the paste-back trigger lines:\n%s", s)
+	}
+}

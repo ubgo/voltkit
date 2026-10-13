@@ -1,5 +1,15 @@
 name: ci
+[[- if eq .CITrigger "push"]]
 on: [push, pull_request]
+[[- else]]
+# Manual only by default: Actions minutes are a budget, so nothing runs by
+# itself. Run it from the Actions tab (Run workflow). To run on every push
+# and pull request instead, set `ci_trigger: push` in .volt.yml and run
+# `volt gen`; the trigger lines that setting writes are:
+#   on: [push, pull_request]
+on:
+  workflow_dispatch:
+[[- end]]
 jobs:
   ci:
     runs-on: ubuntu-latest

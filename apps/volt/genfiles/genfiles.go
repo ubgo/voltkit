@@ -79,6 +79,12 @@ var InstallScripts = []File{
 	{RelPath: "install.ps1", Template: "install.ps1", Comment: "#", CLIOnly: true},
 }
 
+// CI trigger modes for Vars.CITrigger / .volt.yml ci_trigger.
+const (
+	CITriggerManual = "manual"
+	CITriggerPush   = "push"
+)
+
 // Vars parameterise the templates. The URL fields carry the forge's shapes
 // into the shared install scripts (FG-D4) — templates never hardcode a host.
 type Vars struct {
@@ -102,6 +108,11 @@ type Vars struct {
 	// as Binary (.volt.yml extra_binaries, by name); the scripts install
 	// them beside it.
 	ExtraBinaries []string
+	// CITrigger picks when the generated ci workflow runs: "" or
+	// CITriggerManual (the default — nothing runs automatically, Actions
+	// minutes are a budget) or CITriggerPush (every push and PR/MR). Set
+	// from .volt.yml ci_trigger; voltcfg.Load rejects any other value.
+	CITrigger string
 	// Regenerate is the command recorded in the header as the way to
 	// regenerate the file; "" means "volt gen".
 	Regenerate string
@@ -247,6 +258,7 @@ func renderBytes(text string, v Vars, extras map[string]string) ([]byte, error) 
 		"RawScriptURLPS": v.RawScriptURLPS,
 		"TagPrefix":      v.TagPrefix, "CloneURL": v.CloneURL,
 		"ExtraBinaries": strings.Join(v.ExtraBinaries, " "),
+		"CITrigger":     v.CITrigger,
 	}
 	for k, val := range extras {
 		data[k] = val

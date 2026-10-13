@@ -1,4 +1,12 @@
+[[- if eq .CITrigger "push"]]
 # ci: every push and MR — the volt gate (fmt, vet, lint, race tests).
+[[- else]]
+# ci: MANUAL by default (pipeline minutes are a budget) — the volt gate (fmt,
+# vet, lint, race tests) runs only from CI/CD → Run pipeline. To run on every
+# push and MR instead, set `ci_trigger: push` in .volt.yml and run `volt gen`;
+# the rule that setting writes is:
+#   - if: '$CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "merge_request_event"'
+[[- end]]
 # release: MANUAL ONLY by decision (ADR-R14): pushing a tag releases
 # nothing. Run the pipeline by hand (CI/CD → Run pipeline) with TAG set to
 # an existing tag to (re)publish it. Logic lives in the volt binary — this
@@ -8,7 +16,11 @@ image: ghcr.io/khanakia/volt:latest
 
 ci:
   rules:
+[[- if eq .CITrigger "push"]]
     - if: '$CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "merge_request_event"'
+[[- else]]
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+[[- end]]
   script:
     - volt ci
 
