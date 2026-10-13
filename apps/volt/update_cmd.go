@@ -12,14 +12,14 @@ import (
 
 	"strings"
 
-	"github.com/khanakia/voltkit/apps/volt/forge"
+	"github.com/ubgo/voltkit/apps/volt/forge"
 
 	"github.com/spf13/cobra"
 )
 
 // voltRepo is where volt's own releases live. Its release tags are
 // volt/vX.Y.Z (rule one: CLI tag = binary name).
-const voltRepo = "khanakia/voltkit"
+const voltRepo = "ubgo/voltkit"
 
 func newUpdateCommand() *cobra.Command {
 	var force bool

@@ -28,7 +28,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/khanakia/voltkit/apps/volt/scaffold"
+	"github.com/ubgo/voltkit/apps/volt/scaffold"
 )
 
 // Stamp is the typed form of .volt.yml's `generated:` block — everything

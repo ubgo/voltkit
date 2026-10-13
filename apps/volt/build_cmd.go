@@ -5,8 +5,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/khanakia/voltkit/apps/volt/gobuild"
-	"github.com/khanakia/voltkit/apps/volt/voltcfg"
+	"github.com/ubgo/voltkit/apps/volt/gobuild"
+	"github.com/ubgo/voltkit/apps/volt/voltcfg"
 
 	"github.com/spf13/cobra"
 )

@@ -3,7 +3,7 @@ package gobuild
 import (
 	"testing"
 
-	"github.com/khanakia/voltkit/apps/volt/buildmeta"
+	"github.com/ubgo/voltkit/apps/volt/buildmeta"
 )
 
 // vars builds a fixed Vars for deterministic ldflags tests.

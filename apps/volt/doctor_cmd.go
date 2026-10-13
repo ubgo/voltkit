@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/khanakia/voltkit/apps/volt/gitx"
+	"github.com/ubgo/voltkit/apps/volt/gitx"
 
 	"github.com/spf13/cobra"
 )

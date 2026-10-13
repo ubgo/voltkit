@@ -17,7 +17,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/khanakia/voltkit/apps/volt/gitx"
+	"github.com/ubgo/voltkit/apps/volt/gitx"
 )
 
 //go:embed golangci.yml

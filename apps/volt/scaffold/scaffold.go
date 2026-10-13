@@ -23,7 +23,7 @@ import (
 
 	"text/template"
 
-	"github.com/khanakia/voltkit/apps/volt/forge"
+	"github.com/ubgo/voltkit/apps/volt/forge"
 
 	"gopkg.in/yaml.v3"
 )
@@ -31,7 +31,7 @@ import (
 // DefaultRepo and DefaultRef pin where `volt new cli` scaffolds from. The
 // ref advances with volt releases — a deliberate act, per the spec.
 const (
-	DefaultRepo = "khanakia/volt-cli"
+	DefaultRepo = "ubgo/volt-cli"
 	DefaultRef  = "v0.1.0"
 )
 

@@ -16,7 +16,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/khanakia/voltkit/apps/volt/cicheck"
+	"github.com/ubgo/voltkit/apps/volt/cicheck"
 )
 
 // ModuleCoverage is one module's result.

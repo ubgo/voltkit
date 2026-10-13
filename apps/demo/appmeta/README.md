@@ -3,7 +3,7 @@
 The identity of the binary you are building: its name, environment prefix, on-disk directory names, and where its database lives.
 
 ```go
-import "github.com/khanakia/voltkit/appmeta"
+import "github.com/ubgo/voltkit/appmeta"
 ```
 
 ## Why this exists

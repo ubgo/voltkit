@@ -9,8 +9,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/khanakia/voltkit/apps/volt/platform"
-	"github.com/khanakia/voltkit/apps/volt/voltcfg"
+	"github.com/ubgo/voltkit/apps/volt/platform"
+	"github.com/ubgo/voltkit/apps/volt/voltcfg"
 )
 
 // Preflight validates cfg's cgo/platform combination for the given build

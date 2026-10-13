@@ -37,8 +37,8 @@ func TestGitHubParseRemote(t *testing.T) {
 // self-update, so the exact strings are pinned.
 func TestGitHubURLShapes(t *testing.T) {
 	g := GitHub{}
-	if got, want := g.AssetURL("khanakia/voltkit", "volt/v0.5.0", "checksums.txt"),
-		"https://github.com/khanakia/voltkit/releases/download/volt/v0.5.0/checksums.txt"; got != want {
+	if got, want := g.AssetURL("ubgo/voltkit", "volt/v0.5.0", "checksums.txt"),
+		"https://github.com/ubgo/voltkit/releases/download/volt/v0.5.0/checksums.txt"; got != want {
 		t.Errorf("AssetURL = %q, want %q", got, want)
 	}
 	if got, want := g.LatestAssetURL("khanakia/stool", "stool_darwin_arm64.tar.gz"),

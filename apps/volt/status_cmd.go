@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/khanakia/voltkit/apps/volt/streams"
+	"github.com/ubgo/voltkit/apps/volt/streams"
 
 	"github.com/spf13/cobra"
 )

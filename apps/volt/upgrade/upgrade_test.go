@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/khanakia/voltkit/apps/volt/scaffold"
+	"github.com/ubgo/voltkit/apps/volt/scaffold"
 )
 
 // ---- fixtures -----------------------------------------------------------
@@ -261,7 +261,7 @@ func TestSecondRunIsNoop(t *testing.T) {
 
 func fullStamp() map[string]any {
 	return map[string]any{
-		"by": "volt v0.1.0", "template": "khanakia/volt-cli//templates/minimal",
+		"by": "volt v0.1.0", "template": "ubgo/volt-cli//templates/minimal",
 		"ref": "v0.1.0", "commit": strings.Repeat("a", 40), "at": "2026-08-22T05:00:00Z",
 		"inputs": map[string]any{"name": "mytool", "module": "example.test/mytool", "variant": "minimal"},
 	}
@@ -276,7 +276,7 @@ func TestParseStampComplete(t *testing.T) {
 		t.Fatalf("%+v", st)
 	}
 	repo, err := st.Repo()
-	if err != nil || repo != "khanakia/volt-cli" {
+	if err != nil || repo != "ubgo/volt-cli" {
 		t.Fatalf("repo = %q, %v", repo, err)
 	}
 }

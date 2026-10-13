@@ -5,9 +5,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/khanakia/voltkit/apps/volt/buildmeta"
-	"github.com/khanakia/voltkit/apps/volt/platform"
-	"github.com/khanakia/voltkit/apps/volt/voltcfg"
+	"github.com/ubgo/voltkit/apps/volt/buildmeta"
+	"github.com/ubgo/voltkit/apps/volt/platform"
+	"github.com/ubgo/voltkit/apps/volt/voltcfg"
 )
 
 func TestPreflightPureGoAlwaysPasses(t *testing.T) {

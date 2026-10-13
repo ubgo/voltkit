@@ -14,8 +14,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/khanakia/voltkit/apps/volt/detect"
-	"github.com/khanakia/voltkit/apps/volt/voltcfg"
+	"github.com/ubgo/voltkit/apps/volt/detect"
+	"github.com/ubgo/voltkit/apps/volt/voltcfg"
 )
 
 // versionRE matches the semver-ish tail volt accepts: vMAJOR.MINOR.PATCH with

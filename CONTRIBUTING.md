@@ -5,7 +5,7 @@ How to build, test and work on this repo. Usage docs live in the [README](./READ
 ## Setup
 
 ```sh
-git clone https://github.com/khanakia/voltkit && cd voltkit
+git clone https://github.com/ubgo/voltkit && cd voltkit
 task ci          # the full gate: fmt-check, vet, race tests, build, smoke
 ```
 
@@ -47,7 +47,7 @@ task dev -- version           # run the reference binary from source
 task install     # build the WORKING TREE into $GOPATH/bin/volt
 ```
 
-Dev builds are stamped `v0.0.0-dev.<sha>[.dirty]` so `volt --version` always tells you which code is running and a dev build can never be mistaken for a release. Test against the demo fixtures ([volt-demo-cli](https://github.com/khanakia/volt-demo-cli), [volt-demo-lib](https://github.com/khanakia/volt-demo-lib), [volt-demo-clis](https://github.com/khanakia/volt-demo-clis)):
+Dev builds are stamped `v0.0.0-dev.<sha>[.dirty]` so `volt --version` always tells you which code is running and a dev build can never be mistaken for a release. Test against the demo fixtures ([volt-demo-cli](https://github.com/ubgo/volt-demo-cli), [volt-demo-lib](https://github.com/ubgo/volt-demo-lib), [volt-demo-clis](https://github.com/ubgo/volt-demo-clis)):
 
 ```sh
 volt ci

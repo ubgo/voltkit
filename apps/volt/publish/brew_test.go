@@ -37,7 +37,7 @@ func TestSumsFromChecksums(t *testing.T) {
 
 func TestRenderFormula(t *testing.T) {
 	got, err := RenderFormula(FormulaData{
-		Binary: "volt", Desc: "the tool", Repo: "khanakia/voltkit",
+		Binary: "volt", Desc: "the tool", Repo: "ubgo/voltkit",
 		Tag: "volt/v0.1.0", BareVersion: "0.1.0",
 		Sums: map[string]string{"darwin/arm64": "aaa", "linux/amd64": "bbb"},
 	})

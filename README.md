@@ -15,7 +15,7 @@ brew install khanakia/tap/volt        # or: curl release archive, or task instal
 
 | Command | Does |
 |---|---|
-| `volt new cli <name>` | scaffold from the [volt-cli templates](https://github.com/khanakia/volt-cli) (`--template cobra`, `--list`) |
+| `volt new cli <name>` | scaffold from the [volt-cli templates](https://github.com/ubgo/volt-cli) (`--template cobra`, `--list`) |
 | `volt status` | per-stream release state: last tag, commits since, suggested next version |
 | `volt ci [dir]` | the gate: gofmt, vet, golangci-lint (embedded config), race tests — changed modules by default; `--fix` applies auto-fixes |
 | `volt cover [dir]` | coverage per module + statement-weighted total; `--badge coverage.svg` writes a self-contained README badge, `--check` fails when it is stale, `--min N` is a CI floor |
@@ -38,7 +38,7 @@ notes/v1.4.0           a CLI at cmd/notes (tag = binary name, folder depth irrel
 pkg/textutil/v0.1.0    a library submodule (tag = directory path — proxy-mandated)
 ```
 
-Works identically on a single-CLI repo, a library repo, a monorepo of CLIs, and mixed repos — proven live by the demo fixtures: [volt-demo-cli](https://github.com/khanakia/volt-demo-cli), [volt-demo-lib](https://github.com/khanakia/volt-demo-lib), [volt-demo-clis](https://github.com/khanakia/volt-demo-clis).
+Works identically on a single-CLI repo, a library repo, a monorepo of CLIs, and mixed repos — proven live by the demo fixtures: [volt-demo-cli](https://github.com/ubgo/volt-demo-cli), [volt-demo-lib](https://github.com/ubgo/volt-demo-lib), [volt-demo-clis](https://github.com/ubgo/volt-demo-clis).
 
 ### `.volt.yml` — optional, per released directory
 
@@ -99,7 +99,7 @@ paths, _ := appdir.Resolve(meta)   // reports WHICH rung decided, too
 
 | Module | Import | What it does |
 |---|---|---|
-| **root** | `github.com/khanakia/voltkit/...` | the kit's core packages, below |
+| **root** | `github.com/ubgo/voltkit/...` | the kit's core packages, below |
 | [`appmeta`](./apps/demo/appmeta) | `.../appmeta` | app identity: name, env prefix, directory names, DB location policy |
 | [`appdir`](./appdir) | `.../appdir` | resolves where state lives — and reports which rung decided |
 | [`output`](./output) | `.../output` | the stable `{schema_version, kind, count, data}` JSON envelope |

@@ -5,9 +5,9 @@ package main
 import (
 	"strings"
 
-	"github.com/khanakia/voltkit/apps/volt/forge"
-	"github.com/khanakia/voltkit/apps/volt/genfiles"
-	"github.com/khanakia/voltkit/apps/volt/voltcfg"
+	"github.com/ubgo/voltkit/apps/volt/forge"
+	"github.com/ubgo/voltkit/apps/volt/genfiles"
+	"github.com/ubgo/voltkit/apps/volt/voltcfg"
 )
 
 // detectForge resolves the forge for the repo at dir, honoring a `forge:`

@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/khanakia/voltkit/apps/volt/detect"
+	"github.com/ubgo/voltkit/apps/volt/detect"
 )
 
 func TestComposeShapes(t *testing.T) {

@@ -5,7 +5,7 @@
 // repository, so every kit-specific value is a config default, never an
 // import. Adding a voltkit dependency here is a design regression, not a
 // convenience.
-module github.com/khanakia/voltkit/apps/volt
+module github.com/ubgo/voltkit/apps/volt
 
 go 1.26.4
 

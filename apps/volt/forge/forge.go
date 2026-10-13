@@ -19,7 +19,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/khanakia/voltkit/apps/volt/genfiles"
+	"github.com/ubgo/voltkit/apps/volt/genfiles"
 )
 
 // Repo is an "owner/name" repository identity. A distinct type rather than a

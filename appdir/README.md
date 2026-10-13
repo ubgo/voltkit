@@ -3,7 +3,7 @@
 Decides where an application's state lives on disk — and reports **how** it decided.
 
 ```go
-import "github.com/khanakia/voltkit/appdir"
+import "github.com/ubgo/voltkit/appdir"
 ```
 
 ## Why this exists

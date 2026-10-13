@@ -90,5 +90,5 @@ var Default = Meta{
 	DirName:    ".demo",
 	DBFilename: "demo.db",
 	DBLocation: LocationProjectLocal,
-	DocsURL:    "https://github.com/khanakia/voltkit/blob/main/docs/errors",
+	DocsURL:    "https://github.com/ubgo/voltkit/blob/main/docs/errors",
 }

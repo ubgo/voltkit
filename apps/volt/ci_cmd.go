@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/khanakia/voltkit/apps/volt/cicheck"
-	"github.com/khanakia/voltkit/apps/volt/genfiles"
-	"github.com/khanakia/voltkit/apps/volt/gitx"
-	"github.com/khanakia/voltkit/apps/volt/voltcfg"
+	"github.com/ubgo/voltkit/apps/volt/cicheck"
+	"github.com/ubgo/voltkit/apps/volt/genfiles"
+	"github.com/ubgo/voltkit/apps/volt/gitx"
+	"github.com/ubgo/voltkit/apps/volt/voltcfg"
 
 	"github.com/spf13/cobra"
 )

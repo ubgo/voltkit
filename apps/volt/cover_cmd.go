@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/khanakia/voltkit/apps/volt/covercheck"
+	"github.com/ubgo/voltkit/apps/volt/covercheck"
 
 	"github.com/spf13/cobra"
 )

@@ -32,7 +32,7 @@ func fixture(t *testing.T) string {
 }
 
 var vars = Vars{Name: "mytool", Module: "example.test/mytool", Variant: "minimal",
-	Ref: "v0.1.0", TemplateRepo: "khanakia/volt-cli", TemplateCommit: "abc", VoltVersion: "dev", At: "t"}
+	Ref: "v0.1.0", TemplateRepo: "ubgo/volt-cli", TemplateCommit: "abc", VoltVersion: "dev", At: "t"}
 
 func TestGenerateRendersAndOverlays(t *testing.T) {
 	root := fixture(t)

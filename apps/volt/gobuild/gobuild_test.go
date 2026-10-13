@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/khanakia/voltkit/apps/volt/voltcfg"
+	"github.com/ubgo/voltkit/apps/volt/voltcfg"
 )
 
 // scaffoldCLI writes a minimal buildable package main with a stampable

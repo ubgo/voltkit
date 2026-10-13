@@ -88,7 +88,7 @@ tasks:
   deps:
     desc: Show this module's third-party dependencies
     cmds:
-      - 'go list -deps ./... | grep "\." | grep -v khanakia/voltkit | sort -u || echo "none — stdlib only"'
+      - 'go list -deps ./... | grep "\." | grep -v ubgo/voltkit | sort -u || echo "none — stdlib only"'
 
   ci:
     desc: The full gate for this module — format, vet, race tests

@@ -18,11 +18,11 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/khanakia/voltkit/apps/volt/cicheck"
-	"github.com/khanakia/voltkit/apps/volt/detect"
-	"github.com/khanakia/voltkit/apps/volt/gitx"
-	"github.com/khanakia/voltkit/apps/volt/relname"
-	"github.com/khanakia/voltkit/apps/volt/voltcfg"
+	"github.com/ubgo/voltkit/apps/volt/cicheck"
+	"github.com/ubgo/voltkit/apps/volt/detect"
+	"github.com/ubgo/voltkit/apps/volt/gitx"
+	"github.com/ubgo/voltkit/apps/volt/relname"
+	"github.com/ubgo/voltkit/apps/volt/voltcfg"
 )
 
 // Stream is one releasable directory's state.

@@ -9,7 +9,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/khanakia/voltkit/apps/volt/genfiles"
+	"github.com/ubgo/voltkit/apps/volt/genfiles"
 )
 
 // GitLab is the gitlab.com implementation. Zero-value usable; self-hosted

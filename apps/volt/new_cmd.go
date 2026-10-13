@@ -7,8 +7,8 @@ import (
 	"sort"
 	"time"
 
-	"github.com/khanakia/voltkit/apps/volt/forge"
-	"github.com/khanakia/voltkit/apps/volt/scaffold"
+	"github.com/ubgo/voltkit/apps/volt/forge"
+	"github.com/ubgo/voltkit/apps/volt/scaffold"
 
 	"github.com/spf13/cobra"
 )

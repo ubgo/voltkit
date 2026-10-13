@@ -19,8 +19,8 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/khanakia/voltkit/apps/demo/appmeta"
-	"github.com/khanakia/voltkit/versioncmd"
+	"github.com/ubgo/voltkit/apps/demo/appmeta"
+	"github.com/ubgo/voltkit/versioncmd"
 
 	"github.com/spf13/cobra"
 )

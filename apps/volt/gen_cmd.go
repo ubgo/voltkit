@@ -8,11 +8,11 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/khanakia/voltkit/apps/volt/detect"
-	"github.com/khanakia/voltkit/apps/volt/forge"
-	"github.com/khanakia/voltkit/apps/volt/genfiles"
-	"github.com/khanakia/voltkit/apps/volt/relname"
-	"github.com/khanakia/voltkit/apps/volt/voltcfg"
+	"github.com/ubgo/voltkit/apps/volt/detect"
+	"github.com/ubgo/voltkit/apps/volt/forge"
+	"github.com/ubgo/voltkit/apps/volt/genfiles"
+	"github.com/ubgo/voltkit/apps/volt/relname"
+	"github.com/ubgo/voltkit/apps/volt/voltcfg"
 
 	"github.com/spf13/cobra"
 )
@@ -220,7 +220,7 @@ func genSkills(cmd *cobra.Command, cfg voltcfg.Config, f forge.Forge, repo strin
 		_, _ = fmt.Fprintf(cmd.ErrOrStderr(), "REFUSED %s — hand-edited; --force to overwrite\n%s", genfiles.SkillsWiring.RelPath, res.Diff)
 		return fmt.Errorf("refused — review the diff above")
 	}
-	_ = runQuiet("go", "get", "github.com/khanakia/voltkit/skillcmd")
+	_ = runQuiet("go", "get", "github.com/ubgo/voltkit/skillcmd")
 	_, _ = fmt.Fprintf(out, `
 wire it in (one of):
   cobra app:      root.AddCommand(newSkillsCommand())

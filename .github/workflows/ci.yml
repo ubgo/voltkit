@@ -11,5 +11,5 @@ jobs:
         with: { fetch-depth: 0 }
       - uses: actions/setup-go@v5
         with: { go-version-file: apps/volt/go.mod }
-      - uses: khanakia/volt-action@v1
+      - uses: ubgo/volt-action@v1
         with: { args: "ci --all" }

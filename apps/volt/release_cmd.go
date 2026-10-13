@@ -6,11 +6,11 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/khanakia/voltkit/apps/volt/changelog"
-	"github.com/khanakia/voltkit/apps/volt/publish"
-	"github.com/khanakia/voltkit/apps/volt/release"
-	"github.com/khanakia/voltkit/apps/volt/streams"
-	"github.com/khanakia/voltkit/apps/volt/voltcfg"
+	"github.com/ubgo/voltkit/apps/volt/changelog"
+	"github.com/ubgo/voltkit/apps/volt/publish"
+	"github.com/ubgo/voltkit/apps/volt/release"
+	"github.com/ubgo/voltkit/apps/volt/streams"
+	"github.com/ubgo/voltkit/apps/volt/voltcfg"
 
 	"github.com/spf13/cobra"
 )

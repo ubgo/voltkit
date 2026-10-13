@@ -3,7 +3,7 @@
 The `volt` binary that builds, releases and ships Volt-family projects — and, by design, any Go repository at all. Design spec: [`docsi/RELEASE_PIPELINE_SPEC.md`](../../docsi/RELEASE_PIPELINE_SPEC.md); this README covers what is **built today**.
 
 ```sh
-volt new cli mytool                      # scaffold from khanakia/volt-cli templates (--template cobra, --list)
+volt new cli mytool                      # scaffold from ubgo/volt-cli templates (--template cobra, --list)
 volt status                              # per-stream: last tag, commits since, suggested next version
 volt ci                                  # the gate: fmt, vet, golangci, race tests — changed modules
 volt ci --fix                            # apply gofmt/lint auto-fixes, report what remains
@@ -91,7 +91,7 @@ A `ci` workflow run never shows hook output: `volt ci` does not run hooks — th
 
 ### A worked example — the demo gate and announcer
 
-[volt-demo-clis](https://github.com/khanakia/volt-demo-clis) wires both hooks on its `notes` stream. The gate is any executable that exits non-zero to refuse; this one refuses when an env var says releases are frozen:
+[volt-demo-clis](https://github.com/ubgo/volt-demo-clis) wires both hooks on its `notes` stream. The gate is any executable that exits non-zero to refuse; this one refuses when an env var says releases are frozen:
 
 ```sh
 #!/bin/sh
@@ -126,7 +126,7 @@ $ git tag -l 'notes/v0.2.1'        # nothing — locally or on the remote
 
 (`RELEASE_BLOCKED` is the demo script's own convention, not a volt flag — volt only runs the script and honors its exit code. Your gate can check anything: a freeze file, a calendar API, CI status.)
 
-And the successful path, as it appears in a release-workflow Actions log ([live run](https://github.com/khanakia/volt-demo-clis/actions/runs/32577876195)) — `pre_release` absent because `--from-tag` skips it:
+And the successful path, as it appears in a release-workflow Actions log ([live run](https://github.com/ubgo/volt-demo-clis/actions/runs/32577876195)) — `pre_release` absent because `--from-tag` skips it:
 
 ```
 released notes/v0.2.1 — 6 asset(s), verified
@@ -237,7 +237,7 @@ Projects with a managed `skills/` directory get three behaviours: `volt gen skil
 
 ## Status
 
-Self-hosting since 2026-08-21: `volt/v0.1.0` was released by volt itself, and [`volt-action@v1`](https://github.com/khanakia/volt-action) runs `volt ci` / `volt release --from-tag` green on real runners. Install: `brew install khanakia/tap/volt`, or a release archive.
+Self-hosting since 2026-08-21: `volt/v0.1.0` was released by volt itself, and [`volt-action@v1`](https://github.com/ubgo/volt-action) runs `volt ci` / `volt release --from-tag` green on real runners. Install: `brew install khanakia/tap/volt`, or a release archive.
 
 ## Developing volt
 

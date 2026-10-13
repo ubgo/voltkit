@@ -8,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/khanakia/voltkit/apps/volt/detect"
-	"github.com/khanakia/voltkit/apps/volt/forge"
+	"github.com/ubgo/voltkit/apps/volt/detect"
+	"github.com/ubgo/voltkit/apps/volt/forge"
 )
 
 // tagPrefix must mirror relname.Compose exactly — rule one's shapes. The

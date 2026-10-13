@@ -3,7 +3,7 @@
 A plug-and-play `version` command, plus the build provenance behind it.
 
 ```go
-import "github.com/khanakia/voltkit/versioncmd"
+import "github.com/ubgo/voltkit/versioncmd"
 ```
 
 ## Wiring it up

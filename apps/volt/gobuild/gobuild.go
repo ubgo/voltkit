@@ -14,11 +14,11 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/khanakia/voltkit/apps/volt/archive"
-	"github.com/khanakia/voltkit/apps/volt/buildmeta"
-	"github.com/khanakia/voltkit/apps/volt/detect"
-	"github.com/khanakia/voltkit/apps/volt/platform"
-	"github.com/khanakia/voltkit/apps/volt/voltcfg"
+	"github.com/ubgo/voltkit/apps/volt/archive"
+	"github.com/ubgo/voltkit/apps/volt/buildmeta"
+	"github.com/ubgo/voltkit/apps/volt/detect"
+	"github.com/ubgo/voltkit/apps/volt/platform"
+	"github.com/ubgo/voltkit/apps/volt/voltcfg"
 )
 
 // DistDirName is where artifacts land, relative to the working directory —

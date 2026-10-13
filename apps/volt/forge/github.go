@@ -9,8 +9,8 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/khanakia/voltkit/apps/volt/genfiles"
-	"github.com/khanakia/voltkit/apps/volt/publish"
+	"github.com/ubgo/voltkit/apps/volt/genfiles"
+	"github.com/ubgo/voltkit/apps/volt/publish"
 )
 
 // GitHub is the github.com implementation. Zero-value usable: the host is

@@ -3,7 +3,7 @@
 The machine-readable side of every command: one stable JSON envelope.
 
 ```go
-import "github.com/khanakia/voltkit/output"
+import "github.com/ubgo/voltkit/output"
 ```
 
 ## Why one envelope

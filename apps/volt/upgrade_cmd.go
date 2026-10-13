@@ -8,10 +8,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/khanakia/voltkit/apps/volt/gitx"
-	"github.com/khanakia/voltkit/apps/volt/scaffold"
-	"github.com/khanakia/voltkit/apps/volt/upgrade"
-	"github.com/khanakia/voltkit/apps/volt/voltcfg"
+	"github.com/ubgo/voltkit/apps/volt/gitx"
+	"github.com/ubgo/voltkit/apps/volt/scaffold"
+	"github.com/ubgo/voltkit/apps/volt/upgrade"
+	"github.com/ubgo/voltkit/apps/volt/voltcfg"
 
 	"github.com/spf13/cobra"
 )

@@ -1,3 +1,3 @@
-module github.com/khanakia/voltkit/appdir
+module github.com/ubgo/voltkit/appdir
 
 go 1.26.4

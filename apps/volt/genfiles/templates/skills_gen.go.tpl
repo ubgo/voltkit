@@ -1,13 +1,13 @@
 package main
 
 import (
-	"github.com/khanakia/voltkit/skillcmd"
+	"github.com/ubgo/voltkit/skillcmd"
 	"github.com/spf13/cobra"
 )
 
 // newSkillsCommand serves this project's published skills — content fetched
 // once per binary version into the OS cache and served from there, always
-// matching this binary. See github.com/khanakia/voltkit/skillcmd.
+// matching this binary. See github.com/ubgo/voltkit/skillcmd.
 func newSkillsCommand() *cobra.Command {
 	return skillcmd.New(skillcmd.Options{
 		Binary:  "[[.Binary]]",
