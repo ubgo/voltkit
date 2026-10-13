@@ -1,8 +1,12 @@
+# Manual only (owner's call, 2026-10-13: Actions minutes are a budget). To run automatically again, replace the on: block with:
+#   on: [push, pull_request]
+
 # Hand-written (not `volt gen`): voltkit's root is a go.work workspace with no
 # root go.mod, so the generated single-module stub does not fit. This is the
 # one repo in the fleet with that excuse.
 name: ci
-on: [push, pull_request]
+on:
+  workflow_dispatch:
 jobs:
   ci:
     runs-on: ubuntu-latest
