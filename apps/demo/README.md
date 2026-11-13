@@ -15,7 +15,7 @@ apps/demo/
   appmeta/      this app's identity: name, env prefix, directory names, DB policy
 ```
 
-`appmeta` lives here rather than in the kit because it is generated per-app — every project built on the kit has its own. No kit module imports it; commands take the one value they need (`versioncmd` takes a name, `appdir` takes an app key), so identity flows in as a parameter rather than a dependency.
+`appmeta` lives here rather than in the kit because it is generated per-app — every project built on the kit has its own. No kit module imports it; commands take the one value they need (`versioncmd` takes a name), so identity flows in as a parameter rather than a dependency.
 
 ## Adding a command
 

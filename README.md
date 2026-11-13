@@ -5,7 +5,7 @@ Build, release and ship Go CLIs and libraries — **any repo layout, one command
 Two things live here:
 
 1. **The `volt` tool** (`apps/volt`) — scaffolding, CI gate, coverage, cross-platform builds, tagged releases with verification, generated workflows and install scripts.
-2. **The kit modules** — importable packages (`versioncmd`, `appdir`, `output`, …) a Go CLI adopts one at a time via `go get`.
+2. **The kit modules** — importable packages (`versioncmd`, `output`, `skillcmd`, …) a Go CLI adopts one at a time via `go get`.
 
 ## The volt tool
 
@@ -92,8 +92,9 @@ output.JSON(os.Stdout, "notes.list", notes, len(notes))
 ```
 
 ```go
-// where does state live? resolved by policy, never hardcoded:
-paths, _ := appdir.Resolve(meta)   // reports WHICH rung decided, too
+// where does state live? that moved to its own module, github.com/ubgo/appdir:
+d, _ := appdir.New("mycli")        // import "github.com/ubgo/appdir"
+db, _ := d.Ensure(appdir.KindDB)    // creates the parent folder, returns the file path
 ```
 
 ## Modules
@@ -102,7 +103,6 @@ paths, _ := appdir.Resolve(meta)   // reports WHICH rung decided, too
 |---|---|---|
 | **root** | `github.com/ubgo/voltkit/...` | the kit's core packages, below |
 | [`appmeta`](./apps/demo/appmeta) | `.../appmeta` | app identity: name, env prefix, directory names, DB location policy |
-| [`appdir`](./appdir) | `.../appdir` | resolves where state lives — and reports which rung decided |
 | [`output`](./output) | `.../output` | the stable `{schema_version, kind, count, data}` JSON envelope |
 | [`versioncmd`](./versioncmd) | `.../versioncmd` | plug-and-play `version` command with build provenance |
 | [`skillcmd`](./skillcmd) | `.../skillcmd` | a `skills` subcommand for any CLI: serves the project's published SKILL.md agent skills, always matched to the binary's version |

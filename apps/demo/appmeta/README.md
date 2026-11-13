@@ -10,7 +10,7 @@ import "github.com/ubgo/voltkit/appmeta"
 
 Every one of these values shows up in a dozen places — help text, env lookups, path resolution, error hints, the installer, the Homebrew formula. Centralizing them means scaffolding a new project rewrites **one file**, and every other package in the kit stays app-agnostic by taking a `Meta` as a parameter instead of importing a hardcoded name.
 
-> **Invariant:** no package in this kit may hardcode an app name. If a package needs one, it accepts a `Meta` — or, better, just the one field it actually reads. See [`version`](../../../version) for the narrow case and [`appdir`](../../../appdir) for the wide one.
+> **Invariant:** no package in this kit may hardcode an app name. If a package needs one, it accepts a `Meta` — or, better, just the one field it actually reads. See [`versioncmd`](../../../versioncmd) for the narrow case.
 
 ## Usage
 
@@ -30,7 +30,7 @@ var meta = appmeta.Meta{
 
 ## Database location policy
 
-`DBLocation` is a **policy**, never a baked path. Resolution happens at runtime in [`appdir`](../../../appdir).
+`DBLocation` is a **policy**, never a baked path. Resolution happens at runtime, e.g. with [`github.com/ubgo/appdir`](https://github.com/ubgo/appdir).
 
 | Constant | Behaviour | Use when |
 |---|---|---|

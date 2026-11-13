@@ -8,14 +8,13 @@
 version: "3"
 
 # Each module carries its own Taskfile with the same task names, reachable from
-# here as `task <module>:<task>` — e.g. `task volt:test`, `task appdir:ci`.
+# here as `task <module>:<task>` — e.g. `task volt:test`, `task output:ci`.
 # The repo-wide tasks below iterate every module instead, so `task test` at the
 # root still covers everything.
 # `dir:` is required — without it an included task runs from THIS directory, so
 # every `go` command would miss the module it was meant to act on.
 includes:
   output: { taskfile: ./output, dir: ./output }
-  appdir: { taskfile: ./appdir, dir: ./appdir }
   versioncmd: { taskfile: ./versioncmd, dir: ./versioncmd }
   demo: { taskfile: ./apps/demo, dir: ./apps/demo }
   volt: { taskfile: ./apps/volt, dir: ./apps/volt }
@@ -29,7 +28,7 @@ vars:
   # source. The repo root is NOT a module — it holds only the workspace, this
   # file, and docs. Each package below carries its own go.mod and its own tag
   # stream; add a new one here and every task picks it up.
-  MODULES: output appdir versioncmd skillcmd apps/demo apps/volt
+  MODULES: output versioncmd skillcmd apps/demo apps/volt
 
 tasks:
   default:

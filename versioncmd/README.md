@@ -100,7 +100,7 @@ cmd := version.New(version.WithBinaryName("acme"))
 
 A test builds the command for a foreign app and asserts none of this template's identity survives anywhere in `Use`, `Short`, `Long`, or `Example`. A stray hardcoded name reads fine in this repo and only misleads users of a renamed project — who would never suspect the library.
 
-Note the command asks for a **name**, not for an `appmeta.Meta`: it reads one field, so requiring the whole struct would force anyone wanting just this command to adopt the kit's config type. Callers holding a `Meta` pass `meta.Binary`. Contrast [`appdir`](../appdir), which genuinely reads five fields and so takes the struct.
+Note the command asks for a **name**, not for an `appmeta.Meta`: it reads one field, so requiring the whole struct would force anyone wanting just this command to adopt the kit's config type. Callers holding a `Meta` pass `meta.Binary`.
 
 ## Reusing the pieces
 

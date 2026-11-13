@@ -21,7 +21,7 @@ package appmeta
 //
 // It is a POLICY, never a baked absolute path: the build machine's $HOME is not
 // the user's, and a literal "~" in a path creates a directory named "~".
-// Resolution happens at runtime from this policy — see modules/core/appdir.
+// Resolution happens at runtime from this policy — see github.com/ubgo/appdir.
 type DBLocation string
 
 const (

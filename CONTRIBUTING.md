@@ -16,7 +16,6 @@ Requires Go (version from each module's `go.mod` via `GOTOOLCHAIN=auto`), [Task]
 ```
 voltkit/           <- not a module; go.work workspace + Taskfile + docs
   output/   go.mod    <- kit modules: importable libraries, per-module tags (output/vX.Y.Z)
-  appdir/   go.mod
   versioncmd/ go.mod
   skillcmd/ go.mod    <- the `skills` subcommand kit module (SKILL.md serving)
   apps/
@@ -61,7 +60,7 @@ If `volt` resolves to a Homebrew install instead (`which volt`), either put `$(g
 
 ## Design rules
 
-**Take the narrowest dependency you actually use.** [`versioncmd`](./versioncmd) reads one field, so it takes a `string`. [`appdir`](./appdir) reads five, so it takes an `appmeta.Meta`. Requiring a config struct for one string forces every consumer to adopt that struct.
+**Take the narrowest dependency you actually use.** [`versioncmd`](./versioncmd) reads one field, so it takes a `string`. [`appmeta`](./apps/demo/appmeta) exists for callers that genuinely read many fields. Requiring a config struct for one string forces every consumer to adopt that struct.
 
 **The library owns behaviour; the app owns identity.** No kit package hardcodes an app name — the name arrives as a parameter and is interpolated into help text at construction. A test builds each command for a foreign app and asserts none of this template's identity survives.
 
@@ -71,7 +70,7 @@ If `volt` resolves to a Homebrew install instead (`which volt`), either put `$(g
 
 **Split modules on dependency weight, not tidiness.** A module boundary buys independent versioning and lets consumers skip deps they don't want; it costs a tag stream, a `replace` line in every dependent, and coordinated releases. If merging costs consumers nothing, merge.
 
-**Command modules carry the `-cmd` suffix; library modules are plain nouns.** `versioncmd` and `skillcmd` provide cobra commands; `appdir` and `output` are libraries. The suffix is load-bearing, not style: a command module's natural noun tends to collide with a content-directory convention in consuming repos (`skills/` holds skill content, `config/` will hold config) — the suffix dodges that class permanently. Decided 2026-08-22 while `version` had no published tags, i.e. at zero cost.
+**Command modules carry the `-cmd` suffix; library modules are plain nouns.** `versioncmd` and `skillcmd` provide cobra commands; `output` is a library. The suffix is load-bearing, not style: a command module's natural noun tends to collide with a content-directory convention in consuming repos (`skills/` holds skill content, `config/` will hold config) — the suffix dodges that class permanently. Decided 2026-08-22 while `version` had no published tags, i.e. at zero cost.
 
 **The volt tool imports nothing from the kit.** Its commands must work on any Go repository; every kit-specific value is a config default, never an import. Adding a voltkit dependency to `apps/volt` is a design regression.
 
