@@ -1,5 +1,7 @@
 # appdir
 
+> **Deprecated:** use [github.com/ubgo/appdir](https://github.com/ubgo/appdir) instead. This module receives no further changes.
+
 Decides where an application's state lives on disk — and reports **how** it decided.
 
 ```go

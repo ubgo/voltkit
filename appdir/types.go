@@ -24,6 +24,8 @@
 // call site instead.
 //
 // See docsi/APPDIR_SPEC.md for the full design and its rationale.
+//
+// Deprecated: use github.com/ubgo/appdir instead.
 package appdir
 
 import (
