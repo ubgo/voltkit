@@ -76,18 +76,25 @@ func Run(opts Options, cfg voltcfg.Config) (Result, error) {
 	if distDir == "" {
 		distDir = DistDirName
 	}
-	if err := os.MkdirAll(distDir, 0o755); err != nil {
-		return res, err
-	}
 	// Scratch space for raw binaries; the archives are the deliverable.
 	scratch, err := os.MkdirTemp("", "volt-build-*")
 	if err != nil {
 		return res, err
 	}
 	defer func() { _ = os.RemoveAll(scratch) }() // scratch cleanup is best-effort
+	// Archives are staged outside the source tree and moved into distDir only
+	// after the last compile. distDir usually sits inside the repo, and go
+	// build stamps vcs.modified=true when the tree has untracked files: an
+	// archive written there between platform builds marked every later
+	// binary as a dirty build (seen on textdatactl v0.1.1).
+	stage, err := os.MkdirTemp("", "volt-dist-*")
+	if err != nil {
+		return res, err
+	}
+	defer func() { _ = os.RemoveAll(stage) }() // staging cleanup is best-effort
 
 	for _, p := range plats {
-		asset, warns, err := buildOne(opts, cfg, vars, p, scratch, distDir)
+		asset, warns, err := buildOne(opts, cfg, vars, p, scratch, stage)
 		if err != nil {
 			return res, fmt.Errorf("%s: %w", p, err)
 		}
@@ -96,10 +103,18 @@ func Run(opts Options, cfg voltcfg.Config) (Result, error) {
 		_, _ = fmt.Fprintf(log, "built %s\n", asset)
 	}
 
-	res.Checksums, err = archive.WriteChecksums(distDir, res.Assets)
-	if err != nil {
+	if _, err := archive.WriteChecksums(stage, res.Assets); err != nil {
 		return res, fmt.Errorf("checksums: %w", err)
 	}
+	if err := os.MkdirAll(distDir, 0o755); err != nil {
+		return res, err
+	}
+	for _, name := range append(append([]string(nil), res.Assets...), archive.ChecksumsFileName) {
+		if err := moveFile(filepath.Join(stage, name), filepath.Join(distDir, name)); err != nil {
+			return res, fmt.Errorf("collect %s: %w", name, err)
+		}
+	}
+	res.Checksums = filepath.Join(distDir, archive.ChecksumsFileName)
 	for _, w := range res.Warnings {
 		_, _ = fmt.Fprintf(log, "WARN: %s\n", w)
 	}
@@ -336,4 +351,26 @@ func cgoBit(on bool) string {
 		return "1"
 	}
 	return "0"
+}
+
+// moveFile moves src to dst, copying when a rename cannot cross filesystems
+// (the staging directory is under the system temp dir, dist/ is not).
+func moveFile(src, dst string) error {
+	if err := os.Rename(src, dst); err == nil {
+		return nil
+	}
+	in, err := os.Open(src)
+	if err != nil {
+		return err
+	}
+	defer func() { _ = in.Close() }() // read-only
+	out, err := os.OpenFile(dst, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0o644)
+	if err != nil {
+		return err
+	}
+	if _, err := io.Copy(out, in); err != nil {
+		_ = out.Close()
+		return err
+	}
+	return out.Close()
 }
